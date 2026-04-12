@@ -80,7 +80,7 @@ def gradio_reset(chat_state, img_list):
 
 def upload_img(gr_img, text_input, chat_state):
     if gr_img is None:
-        return None, None, gr.update(interactive=True), chat_state, None
+        return None, gr.update(placeholder="Please upload an image first!"), gr.update(interactive=True), chat_state, None
     chat_state = CONV_VISION.copy()
     img_list = []
     llm_message = chat.upload_img(gr_img, chat_state, img_list)
@@ -132,9 +132,9 @@ with gr.Blocks() as demo:
 
     with gr.Row():
         with gr.Column(scale=0.5):
-            image = gr.Image(type="pil")
+            image = gr.Image(type="pil", label="Skin Condition Image")
             upload_button = gr.Button(value="Upload & Start Chat", interactive=True, variant="primary")
-            clear = gr.Button("Restart")
+            clear = gr.Button("Restart", variant="secondary")
 
             num_beams = gr.Slider(
                 minimum=1,
@@ -142,7 +142,7 @@ with gr.Blocks() as demo:
                 value=1,
                 step=1,
                 interactive=True,
-                label="beam search numbers)",
+                label="Beam Search Numbers",
             )
 
             temperature = gr.Slider(
@@ -158,7 +158,7 @@ with gr.Blocks() as demo:
             chat_state = gr.State()
             img_list = gr.State()
             chatbot = gr.Chatbot(label='SkinGPT-4')
-            text_input = gr.Textbox(label='User', placeholder='Please upload your image first', interactive=False)
+            text_input = gr.Textbox(label='Chat Input', placeholder='Please upload your image first', interactive=False)
 
     upload_button.click(upload_img, [image, text_input, chat_state],
                         [image, text_input, upload_button, chat_state, img_list])
