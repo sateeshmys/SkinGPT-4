@@ -1,0 +1,3 @@
+## 2024-05-23 - [Gradio UI Layout and Accessibility]
+**Learning:** In medical AI applications, balancing essential disclaimers with usability is crucial. Using a `gr.Accordion` for long disclaimers keeps the UI focused on the tool while ensuring the information is still accessible. Adding descriptive labels to image inputs and sanitizing user text input (stripping whitespace) significantly improves the robustness and accessibility of the interface.
+**Action:** Always consider using collapsible components for non-primary but required text, and ensure all interactive elements have clear, descriptive labels for screen readers.

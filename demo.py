@@ -73,7 +73,7 @@ def gradio_reset(chat_state, img_list):
         chat_state.messages = []
     if img_list is not None:
         img_list = []
-    return None, gr.update(value=None, interactive=True), gr.update(placeholder='Please upload your image first',
+    return None, gr.update(value=None, interactive=True), gr.update(value="", placeholder='Please upload your image first',
                                                                     interactive=False), gr.update(
         value="Upload & Start Chat", interactive=True), chat_state, img_list
 
@@ -89,8 +89,9 @@ def upload_img(gr_img, text_input, chat_state):
 
 
 def gradio_ask(user_message, chatbot, chat_state):
+    user_message = user_message.strip()
     if len(user_message) == 0:
-        return gr.update(interactive=True, placeholder='Input should not be empty!'), chatbot, chat_state
+        return gr.update(value="", interactive=True, placeholder='Input should not be empty!'), chatbot, chat_state
     chat.ask(user_message, chat_state)
     chatbot = chatbot + [[user_message, None]]
     return '', chatbot, chat_state
@@ -128,13 +129,14 @@ disclaimer_text = """
 with gr.Blocks() as demo:
     gr.Markdown(title)
     gr.Markdown(description)
-    gr.Markdown(disclaimer_text)
+    with gr.Accordion("Medical Disclaimer (Read Before Use)", open=False):
+        gr.Markdown(disclaimer_text)
 
     with gr.Row():
         with gr.Column(scale=0.5):
-            image = gr.Image(type="pil")
+            image = gr.Image(type="pil", label="Upload Skin Image")
             upload_button = gr.Button(value="Upload & Start Chat", interactive=True, variant="primary")
-            clear = gr.Button("Restart")
+            clear = gr.Button("Restart", variant="secondary")
 
             num_beams = gr.Slider(
                 minimum=1,
@@ -142,7 +144,7 @@ with gr.Blocks() as demo:
                 value=1,
                 step=1,
                 interactive=True,
-                label="beam search numbers)",
+                label="Beam search numbers",
             )
 
             temperature = gr.Slider(
@@ -158,7 +160,7 @@ with gr.Blocks() as demo:
             chat_state = gr.State()
             img_list = gr.State()
             chatbot = gr.Chatbot(label='SkinGPT-4')
-            text_input = gr.Textbox(label='User', placeholder='Please upload your image first', interactive=False)
+            text_input = gr.Textbox(label='Chat Message', placeholder='Please upload your image first', interactive=False)
 
     upload_button.click(upload_img, [image, text_input, chat_state],
                         [image, text_input, upload_button, chat_state, img_list])
