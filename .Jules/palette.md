@@ -1,0 +1,3 @@
+## 2024-04-14 - [Enhanced Clarity and Accessibility for Dermatological Diagnosis Demo]
+**Learning:** Adding descriptive `info` text to technical parameters (like Beam Search and Temperature) and using state-descriptive button labels (e.g., "Image Uploaded" vs "Start Chatting") significantly reduces cognitive load for non-technical users in specialized AI applications. Renaming generic actions like "Restart" to context-specific ones like "Clear Conversation" improves the mental model of the user.
+**Action:** Always look for technical parameters that can be explained with `info` text and ensure button labels accurately reflect the state of the application after an interaction.

@@ -85,7 +85,7 @@ def upload_img(gr_img, text_input, chat_state):
     img_list = []
     llm_message = chat.upload_img(gr_img, chat_state, img_list)
     return gr.update(interactive=False), gr.update(interactive=True, placeholder='Type and press Enter'), gr.update(
-        value="Start Chatting", interactive=False), chat_state, img_list
+        value="Image Uploaded", interactive=False), chat_state, img_list
 
 
 def gradio_ask(user_message, chatbot, chat_state):
@@ -132,9 +132,9 @@ with gr.Blocks() as demo:
 
     with gr.Row():
         with gr.Column(scale=0.5):
-            image = gr.Image(type="pil")
+            image = gr.Image(type="pil", label="Upload Skin Image")
             upload_button = gr.Button(value="Upload & Start Chat", interactive=True, variant="primary")
-            clear = gr.Button("Restart")
+            clear = gr.Button("Clear Conversation")
 
             num_beams = gr.Slider(
                 minimum=1,
@@ -142,7 +142,8 @@ with gr.Blocks() as demo:
                 value=1,
                 step=1,
                 interactive=True,
-                label="beam search numbers)",
+                label="Beam Search Number",
+                info="Higher values increase accuracy but slow down generation.",
             )
 
             temperature = gr.Slider(
@@ -152,6 +153,7 @@ with gr.Blocks() as demo:
                 step=0.1,
                 interactive=True,
                 label="Temperature",
+                info="Higher values make the output more random, lower values more deterministic.",
             )
 
         with gr.Column():
