@@ -132,7 +132,7 @@ with gr.Blocks() as demo:
 
     with gr.Row():
         with gr.Column(scale=0.5):
-            image = gr.Image(type="pil")
+            image = gr.Image(type="pil", label="Upload Skin Image")
             upload_button = gr.Button(value="Upload & Start Chat", interactive=True, variant="primary")
             clear = gr.Button("Restart")
 
@@ -142,7 +142,8 @@ with gr.Blocks() as demo:
                 value=1,
                 step=1,
                 interactive=True,
-                label="beam search numbers)",
+                label="Beam search numbers",
+                info="Higher values can improve quality but increase latency."
             )
 
             temperature = gr.Slider(
@@ -152,6 +153,7 @@ with gr.Blocks() as demo:
                 step=0.1,
                 interactive=True,
                 label="Temperature",
+                info="Higher values make output more creative, lower values more deterministic."
             )
 
         with gr.Column():
