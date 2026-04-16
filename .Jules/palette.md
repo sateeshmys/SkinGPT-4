@@ -1,0 +1,3 @@
+## 2024-05-22 - Improving Parameter Clarity with Gradio `info` and `label`
+**Learning:** In specialized domains like medical AI, complex technical parameters (e.g., 'temperature', 'beam search') can be opaque to non-technical users. Gradio version 3.24.1's `info` parameter provides an elegant way to add inline help text that clarifies these settings without cluttering the main UI layout.
+**Action:** Always use the `info` parameter for technical sliders to explain their impact on model behavior, and ensure all input components like `gr.Image` have explicit `label`s to improve both user guidance and screen reader accessibility.
