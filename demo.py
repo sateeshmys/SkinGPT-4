@@ -128,11 +128,12 @@ disclaimer_text = """
 with gr.Blocks() as demo:
     gr.Markdown(title)
     gr.Markdown(description)
-    gr.Markdown(disclaimer_text)
+    with gr.Accordion("Legal Disclaimer", open=False):
+        gr.Markdown(disclaimer_text)
 
     with gr.Row():
-        with gr.Column(scale=0.5):
-            image = gr.Image(type="pil")
+        with gr.Column(scale=1):
+            image = gr.Image(type="pil", label="Skin image to diagnose")
             upload_button = gr.Button(value="Upload & Start Chat", interactive=True, variant="primary")
             clear = gr.Button("Restart")
 
@@ -142,7 +143,8 @@ with gr.Blocks() as demo:
                 value=1,
                 step=1,
                 interactive=True,
-                label="beam search numbers)",
+                label="Beam Search Numbers",
+                info="Higher values can improve response quality but may increase processing time.",
             )
 
             temperature = gr.Slider(
@@ -152,6 +154,7 @@ with gr.Blocks() as demo:
                 step=0.1,
                 interactive=True,
                 label="Temperature",
+                info="Higher values make output more creative, lower values make it more deterministic.",
             )
 
         with gr.Column():
