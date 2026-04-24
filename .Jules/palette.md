@@ -1,0 +1,3 @@
+## 2025-05-15 - UI decluttering and context for Gradio-based skin diagnosis tool
+**Learning:** For LLM-based medical or scientific tools, providing a clear disclaimer is legally and ethically necessary, but it shouldn't dominate the UX. Using a collapsed `gr.Accordion` allows the tool to be immediately usable while keeping the disclaimer accessible. Additionally, Gradio version 3.24.1 specifically requires integer `scale` values for columns to avoid layout breakage or warnings.
+**Action:** Always wrap long secondary text (like disclaimers) in collapsible components to maintain focus on the main interactive elements 'above the fold', and ensure layout constraints for specific Gradio versions are met.
