@@ -1,0 +1,3 @@
+## 2025-05-14 - Gradio 3.24.1 Layout Constraints
+**Learning:** Gradio 3.24.1 is sensitive to layout scaling values and environment versioning. It requires integer values for `scale` in `gr.Column` to avoid layout issues or warnings. Additionally, it is incompatible with Python 3.12+ due to missing dependencies like `pkg_resources` (setuptools) in a way that standard `pip install` might not immediately resolve in all environments, and potential Jinja2 template issues.
+**Action:** Always use integer values for column scales and verify syntax with `py_compile` when the environment prevents full app execution. Use `gr.Accordion` to declutter interfaces with long text.
