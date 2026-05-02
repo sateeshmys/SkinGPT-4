@@ -128,33 +128,37 @@ disclaimer_text = """
 with gr.Blocks() as demo:
     gr.Markdown(title)
     gr.Markdown(description)
-    gr.Markdown(disclaimer_text)
+    with gr.Accordion("Disclaimer", open=False):
+        gr.Markdown(disclaimer_text)
 
     with gr.Row():
-        with gr.Column(scale=0.5):
+        with gr.Column(scale=1):
             image = gr.Image(type="pil")
             upload_button = gr.Button(value="Upload & Start Chat", interactive=True, variant="primary")
             clear = gr.Button("Restart")
 
-            num_beams = gr.Slider(
-                minimum=1,
-                maximum=10,
-                value=1,
-                step=1,
-                interactive=True,
-                label="beam search numbers)",
-            )
+            with gr.Accordion("Advanced Settings", open=False):
+                num_beams = gr.Slider(
+                    minimum=1,
+                    maximum=10,
+                    value=1,
+                    step=1,
+                    interactive=True,
+                    label="Beam search numbers",
+                    info="Controls the number of beams for beam search. Higher values can lead to more stable results but are slower."
+                )
 
-            temperature = gr.Slider(
-                minimum=0.1,
-                maximum=2.0,
-                value=1.0,
-                step=0.1,
-                interactive=True,
-                label="Temperature",
-            )
+                temperature = gr.Slider(
+                    minimum=0.1,
+                    maximum=2.0,
+                    value=1.0,
+                    step=0.1,
+                    interactive=True,
+                    label="Temperature",
+                    info="Controls the randomness of the output. Higher values make the output more random, lower values make it more deterministic."
+                )
 
-        with gr.Column():
+        with gr.Column(scale=2):
             chat_state = gr.State()
             img_list = gr.State()
             chatbot = gr.Chatbot(label='SkinGPT-4')
