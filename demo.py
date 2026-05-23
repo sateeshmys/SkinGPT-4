@@ -128,11 +128,12 @@ disclaimer_text = """
 with gr.Blocks() as demo:
     gr.Markdown(title)
     gr.Markdown(description)
-    gr.Markdown(disclaimer_text)
+    with gr.Accordion(label="Important Disclaimer", open=False):
+        gr.Markdown(disclaimer_text)
 
     with gr.Row():
-        with gr.Column(scale=0.5):
-            image = gr.Image(type="pil")
+        with gr.Column(scale=1):
+            image = gr.Image(type="pil", label="Upload Skin Image")
             upload_button = gr.Button(value="Upload & Start Chat", interactive=True, variant="primary")
             clear = gr.Button("Restart")
 
@@ -142,7 +143,8 @@ with gr.Blocks() as demo:
                 value=1,
                 step=1,
                 interactive=True,
-                label="beam search numbers)",
+                label="Beam Search Numbers",
+                info="Controls the number of beams for search. Higher values increase diversity but slow down generation."
             )
 
             temperature = gr.Slider(
@@ -152,9 +154,10 @@ with gr.Blocks() as demo:
                 step=0.1,
                 interactive=True,
                 label="Temperature",
+                info="Higher values make the output more random."
             )
 
-        with gr.Column():
+        with gr.Column(scale=2):
             chat_state = gr.State()
             img_list = gr.State()
             chatbot = gr.Chatbot(label='SkinGPT-4')
