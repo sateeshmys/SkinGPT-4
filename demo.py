@@ -128,7 +128,8 @@ disclaimer_text = """
 with gr.Blocks() as demo:
     gr.Markdown(title)
     gr.Markdown(description)
-    gr.Markdown(disclaimer_text)
+    with gr.Accordion("Medical Disclaimer", open=False):
+        gr.Markdown(disclaimer_text)
 
     with gr.Row():
         with gr.Column(scale=0.5):
