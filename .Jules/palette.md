@@ -1,0 +1,3 @@
+## 2025-05-14 - Collapsible Disclaimers and Descriptive Sliders
+**Learning:** In medical AI applications, long disclaimers can clutter the UI and distract from the main functionality. Using `gr.Accordion` to wrap these disclaimers improves focus while maintaining accessibility. Additionally, providing `info` text for technical parameters like "Beam Search" and "Temperature" helps non-technical users understand how to tune the model results.
+**Action:** Always wrap long secondary text in collapsible components and provide explicit 'label' and 'info' parameters for form inputs to enhance both accessibility and user understanding.
