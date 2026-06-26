@@ -1,0 +1,3 @@
+## 2025-05-15 - Gradio 3.24.1 Accessibility and UX Patterns
+**Learning:** In medical AI applications like SkinGPT-4, long disclaimers are legally necessary but can overshadow the main interface. Moving them into a collapsed `gr.Accordion` significantly improves the primary task focus. Additionally, Gradio version 3.24.1 supports `info` parameters for sliders, which is essential for explaining complex model parameters like "Temperature" and "Beam Search" to non-technical users.
+**Action:** Always wrap long secondary text (like disclaimers) in collapsible components and provide explicit `info` and `label` parameters for all interactive components to ensure clarity and accessibility.
