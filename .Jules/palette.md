@@ -1,0 +1,3 @@
+## 2025-05-14 - [Layout and Disclaimer Patterns]
+**Learning:** In medical AI applications, balancing regulatory necessity (disclaimers) with task focus is critical. Gradio's `Accordion` is an effective pattern for keeping the UI clean while ensuring legal info remains accessible. Additionally, Gradio version 3.24.1 requires integer `scale` values for layout columns to avoid type errors, even if fractional values are common in CSS/modern frameworks.
+**Action:** Always wrap long secondary text (like disclaimers) in collapsible `gr.Accordion` components and use integer `scale` values for Gradio layout columns.
