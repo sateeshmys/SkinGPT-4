@@ -128,13 +128,14 @@ disclaimer_text = """
 with gr.Blocks() as demo:
     gr.Markdown(title)
     gr.Markdown(description)
-    gr.Markdown(disclaimer_text)
+    with gr.Accordion(label="Medical Disclaimer", open=False):
+        gr.Markdown(disclaimer_text)
 
     with gr.Row():
         with gr.Column(scale=0.5):
-            image = gr.Image(type="pil")
+            image = gr.Image(type="pil", label="Upload Skin Image")
             upload_button = gr.Button(value="Upload & Start Chat", interactive=True, variant="primary")
-            clear = gr.Button("Restart")
+            clear = gr.Button("Restart", variant="secondary")
 
             num_beams = gr.Slider(
                 minimum=1,
@@ -142,7 +143,8 @@ with gr.Blocks() as demo:
                 value=1,
                 step=1,
                 interactive=True,
-                label="beam search numbers)",
+                label="Beam Search Numbers",
+                info="Number of beams for beam search. A higher value can improve results but increases latency.",
             )
 
             temperature = gr.Slider(
@@ -152,6 +154,7 @@ with gr.Blocks() as demo:
                 step=0.1,
                 interactive=True,
                 label="Temperature",
+                info="Controls the randomness of the output. Higher values make the output more random, while lower values make it more deterministic.",
             )
 
         with gr.Column():
