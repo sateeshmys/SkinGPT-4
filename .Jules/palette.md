@@ -1,0 +1,3 @@
+## 2025-07-20 - Gradio 3.24.1 Medical UX Pattern
+**Learning:** In medical AI applications using Gradio 3.24.1, a large, dense disclaimer text pushes main controls below the fold. Using `gr.Accordion(open=False)` groups the disclaimer neatly while retaining legal clarity. Additionally, columns must use positive integer scales (e.g., 1 and 2 rather than float 0.5) to maintain structural balance, and form elements must always define helpful labels and `info` tooltips to explain complex diagnostic generation parameters to the user.
+**Action:** Use collapsible accordion wrappers for disclaimer/non-interactive content, use proper integer scales for columnar layouts, and supply explicit accessibility labels and informational text.
