@@ -1,0 +1,3 @@
+## 2025-02-15 - Integer Scaling and Collapsible Disclaimers in Gradio 3.24.1
+**Learning:** Float-based values for column `scale` attributes can cause inconsistent layout scaling or rendering glitches in older Gradio versions like 3.24.1. Using explicit integer values (e.g., `scale=1` and `scale=2`) provides robust, predictable proportions. Additionally, long clinical disclaimers cause high visual cognitive load; wrapping them in collapsible `gr.Accordion` blocks keeps focus on the primary diagnostic interface.
+**Action:** Always default to integer-based scale ratios for columns and wrap dense text disclaimers in `gr.Accordion` in Gradio 3.24.1.
