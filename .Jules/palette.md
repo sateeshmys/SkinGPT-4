@@ -1,0 +1,3 @@
+## 2024-07-26 - Gradio 3.24.1 Medical Assistant UX & A11y Refinements
+**Learning:** Wrapping heavy diagnostic disclaimer text in a collapsed `gr.Accordion` dramatically declutters the initial screen. In medical AI applications, clear component labels/info on sliders help user comprehension, while establishing a secondary button style hierarchy avoids visual confusion.
+**Action:** Always wrap long disclosures in `gr.Accordion(open=False)`, set proper ratios for side-by-side components (`scale=1` vs `scale=2` columns), provide proper screen-reader labels for images, and use semantic variants (like `secondary` for Restart/Reset buttons).
