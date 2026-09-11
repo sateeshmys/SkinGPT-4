@@ -110,8 +110,6 @@ def gradio_answer(chatbot, chat_state, img_list, num_beams, temperature):
 title = """<h1 align="center">Demo of SkinGPT-4</h1>"""
 description = """<h3>This is the demo of SkinGPT-4 (version June, 2023). Upload your images and start chatting!</h3>"""
 disclaimer_text = """
-<h3>Disclaimer</h3>
-
 - This SkinGPT-4 application is provided for informational purposes only and is not a substitute for professional medical advice, diagnosis, or treatment. It is not intended to replace the expertise and judgment of healthcare professionals.
 
 - The user acknowledges and understands that the information provided by SkinGPT-4 is based on a machine learning model and may not be accurate or up-to-date. The application is not capable of providing a definitive diagnosis, and the user should consult with a qualified healthcare professional for proper medical advice.
@@ -128,13 +126,14 @@ disclaimer_text = """
 with gr.Blocks() as demo:
     gr.Markdown(title)
     gr.Markdown(description)
-    gr.Markdown(disclaimer_text)
+    with gr.Accordion(label="Medical Disclaimer", open=False):
+        gr.Markdown(disclaimer_text)
 
     with gr.Row():
-        with gr.Column(scale=0.5):
-            image = gr.Image(type="pil")
+        with gr.Column(scale=1):
+            image = gr.Image(type="pil", label="Upload Skin Image")
             upload_button = gr.Button(value="Upload & Start Chat", interactive=True, variant="primary")
-            clear = gr.Button("Restart")
+            clear = gr.Button("Restart", variant="secondary")
 
             num_beams = gr.Slider(
                 minimum=1,
@@ -142,7 +141,8 @@ with gr.Blocks() as demo:
                 value=1,
                 step=1,
                 interactive=True,
-                label="beam search numbers)",
+                label="Beam Search Numbers",
+                info="Higher values improve generation quality but increase latency.",
             )
 
             temperature = gr.Slider(
@@ -152,9 +152,10 @@ with gr.Blocks() as demo:
                 step=0.1,
                 interactive=True,
                 label="Temperature",
+                info="Higher values produce more creative responses, lower values make it more deterministic.",
             )
 
-        with gr.Column():
+        with gr.Column(scale=2):
             chat_state = gr.State()
             img_list = gr.State()
             chatbot = gr.Chatbot(label='SkinGPT-4')
