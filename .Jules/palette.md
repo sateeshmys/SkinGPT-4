@@ -1,0 +1,3 @@
+## 2024-07-14 - Progressive Disclosure for Medical AI Disclaimers and Form Labels in Gradio
+**Learning:** Medical AI demos often front-load extensive legal and medical disclaimers that push key interactive elements below the fold. Using Gradio's `gr.Accordion` with `open=False` preserves critical compliance notices while decluttering the initial user view. Additionally, form components like `gr.Image` and `gr.Slider` in Gradio require explicit `label` and `info` parameters to ensure accessibility for screen readers and clarity around parameters like beam search and temperature.
+**Action:** Always wrap extensive secondary notices in collapsible accordions, provide explicit labels on upload components, and attach descriptive helper info to configuration sliders.
